@@ -4,7 +4,8 @@ createApp({
     data() {
         return {
             // À CHANGER POUR 'accueil'
-            pageActive: "audio-player"
+            pageActive: "audio-player",
+            chansons: [],
         }
     },
     methods: {
@@ -13,6 +14,13 @@ createApp({
         }
     },
     mounted() {
-
+        /**
+         * Récupération de la liste des chansons
+         */
+        fetch("data/chansons.json").then(response => {
+            response.json().then(listeChansons => {
+                this.chansons = listeChansons
+            })
+        })
     }
 }).mount('#app')

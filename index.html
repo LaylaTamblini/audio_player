@@ -17,10 +17,23 @@
         </section>
     
         <section class="audio-player" v-if="pageActive=='audio-player'" v-cloak>
-            <h1>Audio Player</h1>
-            <button @click.prevent="changerPage('accueil')">
-                Accueil
-            </button>
+            <header>
+                <h1>Audio Player</h1>
+                <button @click.prevent="changerPage('accueil')">
+                    Accueil
+                </button>
+            </header>
+            
+            <section class="liste-chansons" v-for="chanson in chansons">
+                <article class="chanson">
+                    <a href="">
+                        <img :src="`data/${chanson.image}`" alt="">
+                        <p>{{chanson.titre}}</p>
+                        <p>{{chanson.artiste}}</p>
+                        <p>{{chanson.temps}}</p>
+                    </a>
+                </article>
+            </section>
         </section>
 
     </div>
