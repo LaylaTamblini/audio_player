@@ -76,6 +76,30 @@ body {
 .audio-player header {
   margin-bottom: 2rem;
 }
+.audio-player .chanson {
+  background-color: rgb(124, 216, 216);
+  padding: 0.5rem;
+}
+.audio-player .chanson a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.audio-player .chanson a .informations-chanson {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-left: 0.5rem;
+}
+.audio-player .chanson a .informations-chanson div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.audio-player .chanson:not(last-child) {
+  margin-bottom: 0.5rem;
+}
 
 img {
   width: 50px;

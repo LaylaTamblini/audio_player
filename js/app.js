@@ -11,6 +11,12 @@ createApp({
     methods: {
         changerPage(page) {
             this.pageActive = page
+        },
+        formaterTemps(temps) {
+            let minutes = (Math.floor(temps / 60) + "").padStart(2, "0")
+            let secondes = (Math.floor(temps - minutes * 60) + "").padStart(2,"0")
+
+            return `${minutes}:${secondes}`   
         }
     },
     mounted() {

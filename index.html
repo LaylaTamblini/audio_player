@@ -28,9 +28,15 @@
                 <article class="chanson">
                     <a href="">
                         <img :src="`data/${chanson.image}`" alt="">
-                        <p>{{chanson.titre}}</p>
-                        <p>{{chanson.artiste}}</p>
-                        <p>{{chanson.temps}}</p>
+
+                        <div class="informations-chanson">
+                            <div>
+                                <p>{{chanson.titre}}</p>
+                                <p>{{chanson.artiste}}</p>
+                            </div>
+                            
+                            <p>{{formaterTemps(chanson.temps)}}</p>
+                        </div>
                     </a>
                 </article>
             </section>

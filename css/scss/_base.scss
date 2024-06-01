@@ -20,8 +20,36 @@ body {
 }
 
 .audio-player {
-    header {
+    & header {
         margin-bottom: 2rem;
+    }
+
+    .chanson {
+        background-color: rgb(124, 216, 216);
+        padding: 0.5rem;
+        & a {
+            display: flex;
+            justify-content: space-between;
+            text-decoration: none;
+
+            .informations-chanson {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-left: 0.5rem;
+
+                & div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        }
+    }
+
+    .chanson:not(last-child) {
+        margin-bottom: 0.5rem;
     }
 }
 
