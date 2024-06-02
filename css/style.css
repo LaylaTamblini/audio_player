@@ -148,6 +148,11 @@ body {
 .audio-player .lecteur .duration input {
   width: 100%;
 }
+.audio-player .lecteur .duration div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 img {
   width: 50px;

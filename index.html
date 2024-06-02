@@ -26,7 +26,7 @@
             
             <section class="liste-chansons" v-for="chanson in chansons">
                 <article class="chanson">
-                    <a href="" @click.prevent="">
+                    <a href="" @click.prevent="selectionnerChanson(chanson)">
                         <img :src="`data/${chanson.image}`" alt="">
 
                         <div class="informations-chanson">
@@ -44,7 +44,7 @@
             <section class="lecteur">
                 <div class="lecteur-chanson">
                     <div class="lecteur-informations">
-                        <img src="" alt="">
+                        <img src="data/1026cbea7b06928df53e66045a1badaf.jpg" alt="">
 
                         <div>
                             <p class="titre">Titre</p>
@@ -65,7 +65,11 @@
 
                 <div class="duration">
                     <input type="range" name="" id="">
-                    <p class="temps">Temps</p>
+                    <div>
+                        <p class="temps">Temps actuel</p>
+                        <p class="temps">Temps full</p>
+
+                    </div>
                 </div>
             </section>
 

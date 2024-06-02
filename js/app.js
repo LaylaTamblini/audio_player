@@ -6,6 +6,7 @@ createApp({
             // À CHANGER POUR 'accueil'
             pageActive: "audio-player",
             chansons: [],
+            chanson: null
         }
     },
     methods: {
@@ -17,6 +18,9 @@ createApp({
             let secondes = (Math.floor(temps - minutes * 60) + "").padStart(2,"0")
 
             return `${minutes}:${secondes}`   
+        },
+        selectionnerChanson(chanson) {
+            this.chanson = chanson
         }
     },
     mounted() {
