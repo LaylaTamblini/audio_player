@@ -26,21 +26,52 @@
             
             <section class="liste-chansons" v-for="chanson in chansons">
                 <article class="chanson">
-                    <a href="">
+                    <a href="" @click.prevent="">
                         <img :src="`data/${chanson.image}`" alt="">
 
                         <div class="informations-chanson">
                             <div>
-                                <p>{{chanson.titre}}</p>
-                                <p>{{chanson.artiste}}</p>
+                                <p class="titre">{{chanson.titre}}</p>
+                                <p class="artiste">{{chanson.artiste}}</p>
                             </div>
                             
-                            <p>{{formaterTemps(chanson.temps)}}</p>
+                            <p class="temps">{{formaterTemps(chanson.temps)}}</p>
                         </div>
                     </a>
                 </article>
             </section>
+
+            <section class="lecteur">
+                <div class="lecteur-chanson">
+                    <div class="lecteur-informations">
+                        <img src="" alt="">
+
+                        <div>
+                            <p class="titre">Titre</p>
+                            <p class="artiste">Artiste</p>
+                        </div>
+                    </div>
+
+                    <div class="lecteur-btns">
+                        <button>
+                            Play
+                        </button>
+
+                        <button>
+                            Pause
+                        </button>
+                    </div>
+                </div>
+
+                <div class="duration">
+                    <input type="range" name="" id="">
+                    <p class="temps">Temps</p>
+                </div>
+            </section>
+
+            <audio src="" ref="audio"></audio>
         </section>
+
 
     </div>
     <script type="module" src="js/app.js"></script>

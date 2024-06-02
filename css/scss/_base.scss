@@ -20,40 +20,100 @@ body {
 }
 
 .audio-player {
+    margin-bottom: 6.5rem;
     & header {
         margin-bottom: 2rem;
     }
 
     .chanson {
-        background-color: rgb(124, 216, 216);
-        padding: 0.5rem;
+        
         & a {
             display: flex;
             justify-content: space-between;
             text-decoration: none;
-
+            padding: 0.5rem;
+            border-radius: 1rem;
+            background-color: rgb(124, 216, 216);
+            color: rgb(12, 12, 12);
+            
             .informations-chanson {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
                 margin-left: 0.5rem;
-
+                
                 & div {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
+
+                    .titre {
+                        margin-bottom: 0.1rem;
+                        font-weight: 600;
+                    }
+
+                    .artiste {
+                        font-size: 0.8rem;
+                    }
                 }
+
+                .temps {
+                    font-size: 0.8rem;
+                }
+            }
+
+            &:hover {
+                background-color: rgb(106, 184, 184);
             }
         }
     }
-
+    
     .chanson:not(last-child) {
         margin-bottom: 0.5rem;
+    }
+
+    .lecteur {
+        width: 100%;
+        height: 110px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: rgb(53, 53, 53);
+        display: flex;
+        flex-direction: column;
+
+        .lecteur-chanson {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .lecteur-informations {
+                display: flex;
+                align-items: center;
+
+                & img {
+                    margin-right: 1rem;
+                }
+            }
+        }
+
+        .duration {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            & input {
+                width: 100%;
+            }
+        }
     }
 }
 
 img {
     width: 50px;
     height: 50px;
+    border-radius: 0.5rem;
 }
