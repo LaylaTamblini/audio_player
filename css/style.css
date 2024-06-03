@@ -125,6 +125,7 @@ body {
   right: 0;
   padding: 1rem;
   background-color: rgb(53, 53, 53);
+  color: white;
   display: flex;
   flex-direction: column;
 }

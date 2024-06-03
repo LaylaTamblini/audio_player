@@ -82,24 +82,25 @@ body {
         right: 0;
         padding: 1rem;
         background-color: rgb(53, 53, 53);
+        color: white;
         display: flex;
         flex-direction: column;
-
+        
         .lecteur-chanson {
             display: flex;
             justify-content: space-between;
             align-items: center;
-
+            
             .lecteur-informations {
                 display: flex;
                 align-items: center;
-
+                
                 & img {
                     margin-right: 1rem;
                 }
             }
         }
-
+        
         .duration {
             display: flex;
             flex-direction: column;

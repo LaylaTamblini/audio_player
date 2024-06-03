@@ -6,7 +6,10 @@ createApp({
             // À CHANGER POUR 'accueil'
             pageActive: "audio-player",
             chansons: [],
-            chanson: null
+            chanson: null,
+            tempsActuel: 0,
+            tempsRestant: 0,
+            joue: false,
         }
     },
     methods: {
@@ -20,7 +23,22 @@ createApp({
             return `${minutes}:${secondes}`   
         },
         selectionnerChanson(chanson) {
+            this.tempsActuel = 0
+            this.tempsRestant = 0
             this.chanson = chanson
+            this.joue = false
+        },
+        jouer() {
+            this.$refs.audio.play()
+            this.joue = true
+        },
+        arreter() {
+            this.$refs.audio.pause()
+            this.joue = false
+        },
+        miseAjour() {
+            this.tempsActuel = this.$refs.audio.currentTime
+            this.tempsRestant = this.chanson.temps - this.tempsActuel
         }
     },
     mounted() {
