@@ -13,6 +13,7 @@
         <!-- Page d'accueil -->
         <section class="accueil" v-if="pageActive=='accueil'" v-cloak>
             <h1>Accueil</h1>
+
             <button @click.prevent="changerPage('audio-player')">
                 Audio Player
             </button>
@@ -23,23 +24,54 @@
             <header>
                 <button @click.prevent="changerPage('accueil')">
                     <span class="material-icons">
-                        keyboard_return
+                        arrow_back
                     </span>
                 </button>
 
                 <!-- Barre de recherche -->
                 <section class="recherche">
                     <input type="search" name="" id="" placeholder="chercher un titre" class="barre-de-recherche">
+                    <span class="material-icons">
+                        search
+                    </span>
                 </section>
             </header>
 
             <section class="chanson-selectionnee">
-                <img src="data/placeholder.jpg" alt="">
+                <img src="data/placeholder.jpg" alt="" class="grande-image">
                 <div>
                     <p>Titre</p>
                     <p>Artiste</p>
                 </div>
             </section>
+
+                        <!-- Lecteur -->
+                        <section class="lecteur">
+                            <div class="lecteur-btns">
+                                <button @click.prevent="jouer()" v-if="!joue">
+                                    <span class="material-icons">
+                                        play_arrow
+                                    </span>
+                                </button>
+            
+                                <button @click.prevent="arreter()" v-if="joue">
+                                    <span class="material-icons">
+                                        pause
+                                    </span>
+                                </button>
+                            </div>
+            
+                            <div class="lecteur-temps">
+                                <input type="range" name="" id="">
+            
+                                <div>
+                                    <p>{{formaterTemps(tempsActuel)}}</p>
+                                    <p>{{formaterTemps(tempsRestant)}}</p>
+                                </div>
+                            </div>
+            
+                            <audio :src="`data/${audio}`" ref="audio" @timeupdate="miseAjour()"></audio>
+                        </section>
 
             <!-- Liste des chansons -->
             <section class="liste-chansons">
@@ -58,30 +90,6 @@
                         </div>
                     </a>
                 </article>
-            </section>
-
-            <!-- Lecteur -->
-            <section class="lecteur">
-                <div class="lecteur-btns">
-                    <button @click.prevent="jouer()" v-if="!joue">
-                        Play
-                    </button>
-
-                    <button @click.prevent="arreter()" v-if="joue">
-                        Pause
-                    </button>
-                </div>
-
-                <div class="lecteur-temps">
-                    <input type="range" name="" id="">
-
-                    <div>
-                        <p>{{formaterTemps(tempsActuel)}}</p>
-                        <p>{{formaterTemps(tempsRestant)}}</p>
-                    </div>
-                </div>
-
-                <audio :src="`data/${audio}`" ref="audio" @timeupdate="miseAjour()"></audio>
             </section>
 
         </section>

@@ -15,16 +15,11 @@ html {
 	box-sizing: inherit;
 }
 
-body {
-    padding: 1rem;
-}
-
 .audio-player {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6rem;
 
     & header {
         display: flex;
@@ -32,76 +27,28 @@ body {
         align-items: center;
         width: 100%;
         margin-bottom: 2rem;
+        padding: 1rem;
+
+        .recherche {
+            display: flex;
+            align-items: center;
+        }
     }
 
     .chanson-selectionnee {
         display: flex;
         justify-content: flex-start;
         width: 100%;
-        margin-bottom: 1rem;
-    }
-
-    .liste-chansons {
-        width: 100%
-    }
-
-    .chanson {
-        width: 100%;
+        padding: 1rem;
         
-        & a {
-            display: flex;
-            position: relative;
-            justify-content: space-between;
-            text-decoration: none;
-            padding: 0.5rem;
-            border-radius: 1rem;
-            background-color: rgb(124, 216, 216);
-            color: rgb(12, 12, 12);
-            
-            .informations-chanson {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                margin-left: 0.5rem;
-                
-                & div {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-
-                    .titre {
-                        margin-bottom: 0.1rem;
-                        font-weight: 600;
-                    }
-
-                    .artiste {
-                        font-size: 0.8rem;
-                    }
-                }
-
-                .temps {
-                    font-size: 0.8rem;
-                }
-            }
-
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.164);
-            }
+        & div {
+            margin-left: 1rem;
         }
-    }
-    
-    .chanson:not(last-child) {
-        margin-bottom: 0.5rem;
     }
 
     .lecteur {
         width: 100%;
         height: 110px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
         padding: 1rem;
         background-color: rgb(53, 53, 53);
         color: white;
@@ -113,6 +60,10 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
+            
+            & span {
+                color: white;
+            }
         }
         
         .lecteur-temps {
@@ -131,11 +82,70 @@ body {
             }
         }
     }
+
+    .liste-chansons {
+        width: 100%;
+        padding: 1rem;
+
+        .chanson {
+            width: 100%;
+            
+            & a {
+                display: flex;
+                position: relative;
+                justify-content: space-between;
+                text-decoration: none;
+                padding: 0.5rem;
+                border-radius: 1rem;
+                background-color: rgb(124, 216, 216);
+                color: rgb(12, 12, 12);
+                
+                .informations-chanson {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    margin-left: 0.5rem;
+                    
+                    & div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+    
+                        .titre {
+                            margin-bottom: 0.1rem;
+                            font-weight: 600;
+                        }
+    
+                        .artiste {
+                            font-size: 0.8rem;
+                        }
+                    }
+    
+                    .temps {
+                        font-size: 0.8rem;
+                    }
+                }
+    
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.164);
+                }
+            }
+        }
+        
+        .chanson:not(last-child) {
+            margin-bottom: 0.5rem;
+        }
+    }
 }
 
 .petite-image {
     width: 50px;
     height: 50px;
+    border-radius: 0.5rem;
+}
+
+.grande-image {
     border-radius: 0.5rem;
 }
 

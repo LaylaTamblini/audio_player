@@ -69,16 +69,11 @@ html {
   box-sizing: inherit;
 }
 
-body {
-  padding: 1rem;
-}
-
 .audio-player {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 6rem;
 }
 .audio-player header {
   display: flex;
@@ -86,64 +81,24 @@ body {
   align-items: center;
   width: 100%;
   margin-bottom: 2rem;
+  padding: 1rem;
+}
+.audio-player header .recherche {
+  display: flex;
+  align-items: center;
 }
 .audio-player .chanson-selectionnee {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  margin-bottom: 1rem;
+  padding: 1rem;
 }
-.audio-player .liste-chansons {
-  width: 100%;
-}
-.audio-player .chanson {
-  width: 100%;
-}
-.audio-player .chanson a {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  text-decoration: none;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  background-color: rgb(124, 216, 216);
-  color: rgb(12, 12, 12);
-}
-.audio-player .chanson a .informations-chanson {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-left: 0.5rem;
-}
-.audio-player .chanson a .informations-chanson div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.audio-player .chanson a .informations-chanson div .titre {
-  margin-bottom: 0.1rem;
-  font-weight: 600;
-}
-.audio-player .chanson a .informations-chanson div .artiste {
-  font-size: 0.8rem;
-}
-.audio-player .chanson a .informations-chanson .temps {
-  font-size: 0.8rem;
-}
-.audio-player .chanson a:hover {
-  background-color: rgba(0, 0, 0, 0.164);
-}
-.audio-player .chanson:not(last-child) {
-  margin-bottom: 0.5rem;
+.audio-player .chanson-selectionnee div {
+  margin-left: 1rem;
 }
 .audio-player .lecteur {
   width: 100%;
   height: 110px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   padding: 1rem;
   background-color: rgb(53, 53, 53);
   color: white;
@@ -155,6 +110,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.audio-player .lecteur .lecteur-btns span {
+  color: white;
 }
 .audio-player .lecteur .lecteur-temps {
   display: flex;
@@ -169,10 +127,59 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.audio-player .liste-chansons {
+  width: 100%;
+  padding: 1rem;
+}
+.audio-player .liste-chansons .chanson {
+  width: 100%;
+}
+.audio-player .liste-chansons .chanson a {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background-color: rgb(124, 216, 216);
+  color: rgb(12, 12, 12);
+}
+.audio-player .liste-chansons .chanson a .informations-chanson {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-left: 0.5rem;
+}
+.audio-player .liste-chansons .chanson a .informations-chanson div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.audio-player .liste-chansons .chanson a .informations-chanson div .titre {
+  margin-bottom: 0.1rem;
+  font-weight: 600;
+}
+.audio-player .liste-chansons .chanson a .informations-chanson div .artiste {
+  font-size: 0.8rem;
+}
+.audio-player .liste-chansons .chanson a .informations-chanson .temps {
+  font-size: 0.8rem;
+}
+.audio-player .liste-chansons .chanson a:hover {
+  background-color: rgba(0, 0, 0, 0.164);
+}
+.audio-player .liste-chansons .chanson:not(last-child) {
+  margin-bottom: 0.5rem;
+}
 
 .petite-image {
   width: 50px;
   height: 50px;
+  border-radius: 0.5rem;
+}
+
+.grande-image {
   border-radius: 0.5rem;
 }
 
