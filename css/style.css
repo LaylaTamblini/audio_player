@@ -74,13 +74,34 @@ body {
 }
 
 .audio-player {
-  margin-bottom: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6rem;
 }
 .audio-player header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin-bottom: 2rem;
+}
+.audio-player .chanson-selectionnee {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.audio-player .liste-chansons {
+  width: 100%;
+}
+.audio-player .chanson {
+  width: 100%;
 }
 .audio-player .chanson a {
   display: flex;
+  position: relative;
   justify-content: space-between;
   text-decoration: none;
   padding: 0.5rem;
@@ -111,7 +132,7 @@ body {
   font-size: 0.8rem;
 }
 .audio-player .chanson a:hover {
-  background-color: rgb(106, 184, 184);
+  background-color: rgba(0, 0, 0, 0.164);
 }
 .audio-player .chanson:not(last-child) {
   margin-bottom: 0.5rem;
@@ -128,35 +149,36 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
-}
-.audio-player .lecteur .lecteur-chanson {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
-.audio-player .lecteur .lecteur-chanson .lecteur-informations {
+.audio-player .lecteur .lecteur-btns {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-.audio-player .lecteur .lecteur-chanson .lecteur-informations img {
-  margin-right: 1rem;
-}
-.audio-player .lecteur .duration {
+.audio-player .lecteur .lecteur-temps {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.audio-player .lecteur .duration input {
+.audio-player .lecteur .lecteur-temps input {
   width: 100%;
 }
-.audio-player .lecteur .duration div {
+.audio-player .lecteur .lecteur-temps div {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-img {
+.petite-image {
   width: 50px;
   height: 50px;
   border-radius: 0.5rem;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  padding: 0;
 }/*# sourceMappingURL=style.css.map */

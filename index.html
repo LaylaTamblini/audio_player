@@ -5,35 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Player 😎</title>
     <link rel="shortcut icon" href="#">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="app">
-
+        <!-- Page d'accueil -->
         <section class="accueil" v-if="pageActive=='accueil'" v-cloak>
             <h1>Accueil</h1>
             <button @click.prevent="changerPage('audio-player')">
                 Audio Player
             </button>
         </section>
-    
+        
+        <!-- Page du lecteur -->
         <section class="audio-player" v-if="pageActive=='audio-player'" v-cloak>
             <header>
-                <h1>Audio Player</h1>
                 <button @click.prevent="changerPage('accueil')">
-                    Accueil
+                    <span class="material-icons">
+                        keyboard_return
+                    </span>
                 </button>
+
+                <!-- Barre de recherche -->
+                <section class="recherche">
+                    <input type="search" name="" id="" placeholder="chercher un titre" class="barre-de-recherche">
+                </section>
             </header>
 
-            <section class="recherche">
-                <input type="search" name="" id="">
-                <button type="submit">Envoyez</button>
+            <section class="chanson-selectionnee">
+                <img src="data/placeholder.jpg" alt="">
+                <div>
+                    <p>Titre</p>
+                    <p>Artiste</p>
+                </div>
             </section>
-            
-            <section class="liste-chansons" v-for="chanson in chansons">
-                <article class="chanson">
+
+            <!-- Liste des chansons -->
+            <section class="liste-chansons">
+                <!-- Une chanson -->
+                <article class="chanson" v-for="chanson in chansons">
                     <a href="" @click.prevent="selectionnerChanson(chanson)">
-                        <img :src="`data/${chanson.image}`" alt="">
+                        <img :src="`data/${chanson.image}`" alt="" class="petite-image">
 
                         <div class="informations-chanson">
                             <div>
@@ -47,37 +60,28 @@
                 </article>
             </section>
 
-            <section class="lecteur" v-if="chanson!=null">
-                <div class="lecteur-chanson">
-                    <div class="lecteur-informations">
-                        <img :src="`data/${chanson.image}`" alt="">
+            <!-- Lecteur -->
+            <section class="lecteur">
+                <div class="lecteur-btns">
+                    <button @click.prevent="jouer()" v-if="!joue">
+                        Play
+                    </button>
 
-                        <div>
-                            <p class="titre">{{chanson.titre}}</p>
-                            <p class="artiste">{{chanson.artiste}}e</p>
-                        </div>
-                    </div>
-
-                    <div class="lecteur-btns">
-                        <button @click.prevent="jouer()" v-if="joue==false">
-                            Play
-                        </button>
-
-                        <button @click.prevent="arreter()" v-if="joue==true">
-                            Pause
-                        </button>
-                    </div>
+                    <button @click.prevent="arreter()" v-if="joue">
+                        Pause
+                    </button>
                 </div>
 
-                <div class="duration">
+                <div class="lecteur-temps">
                     <input type="range" name="" id="">
+
                     <div>
-                        <p class="temps">{{formaterTemps(tempsActuel)}}</p>
-                        <p class="temps">{{formaterTemps(tempsRestant)}}</p>
+                        <p>{{formaterTemps(tempsActuel)}}</p>
+                        <p>{{formaterTemps(tempsRestant)}}</p>
                     </div>
                 </div>
 
-                <audio :src="`data/${chanson.audio}`" ref="audio" @timeupdate="miseAjour()"></audio>
+                <audio :src="`data/${audio}`" ref="audio" @timeupdate="miseAjour()"></audio>
             </section>
 
         </section>

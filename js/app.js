@@ -10,6 +10,8 @@ createApp({
             tempsActuel: 0,
             tempsRestant: 0,
             joue: false,
+            image: "placeholder.jpg",
+            audio: "empty.mp3"
         }
     },
     methods: {
@@ -23,10 +25,10 @@ createApp({
             return `${minutes}:${secondes}`   
         },
         selectionnerChanson(chanson) {
-            this.tempsActuel = 0
-            this.tempsRestant = 0
+            this.arreter()
             this.chanson = chanson
-            this.joue = false
+            this.image = this.chanson.image
+            this.audio = this.chanson.audio
         },
         jouer() {
             this.$refs.audio.play()

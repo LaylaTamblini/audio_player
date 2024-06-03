@@ -20,15 +20,37 @@ body {
 }
 
 .audio-player {
-    margin-bottom: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6rem;
+
     & header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
         margin-bottom: 2rem;
     }
 
+    .chanson-selectionnee {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .liste-chansons {
+        width: 100%
+    }
+
     .chanson {
+        width: 100%;
         
         & a {
             display: flex;
+            position: relative;
             justify-content: space-between;
             text-decoration: none;
             padding: 0.5rem;
@@ -64,7 +86,7 @@ body {
             }
 
             &:hover {
-                background-color: rgb(106, 184, 184);
+                background-color: rgba(0, 0, 0, 0.164);
             }
         }
     }
@@ -85,23 +107,15 @@ body {
         color: white;
         display: flex;
         flex-direction: column;
-        
-        .lecteur-chanson {
+        justify-content: space-between;
+
+        .lecteur-btns {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            
-            .lecteur-informations {
-                display: flex;
-                align-items: center;
-                
-                & img {
-                    margin-right: 1rem;
-                }
-            }
+            justify-content: center;
         }
         
-        .duration {
+        .lecteur-temps {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -119,8 +133,15 @@ body {
     }
 }
 
-img {
+.petite-image {
     width: 50px;
     height: 50px;
     border-radius: 0.5rem;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    padding: 0;
 }
