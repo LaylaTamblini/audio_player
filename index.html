@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Player 😎</title>
+    <title>Audio Player</title>
     <link rel="shortcut icon" href="#">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div id="app">
-        <!-- Page d'accueil -->
-        <section class="accueil" v-if="pageActive=='accueil'" v-cloak>
-            <h1>Accueil</h1>
 
+        <!-- Page d'accueil -->
+        <section v-if="pageActive=='accueil'" v-cloak>
+            <h1>Accueil</h1>
+            
             <button @click.prevent="changerPage('audio-player')">
                 Audio Player
             </button>
         </section>
         
         <!-- Page du lecteur -->
-        <section class="audio-player" v-if="pageActive=='audio-player'" v-cloak>
+        <section v-if="pageActive=='audio-player'" v-cloak>
             <header>
                 <button @click.prevent="changerPage('accueil')">
                     <span class="material-icons">
@@ -30,12 +31,7 @@
 
                 <!-- Barre de recherche -->
                 <section class="recherche">
-                    <input 
-                        type="text" 
-                        placeholder="Chercher un titre" 
-                        class="barre-de-recherche"
-                    >
-
+                    <input type="text" placeholder="Chercher un titre">
                     <span class="material-icons">
                         search
                     </span>
@@ -43,18 +39,19 @@
 
             </header>
 
-            <section class="chanson-selectionnee">
+            <!-- Highlight -->
+            <section class="highlight">
                 <p v-if="chanson">Joue maintenant</p>
 
-                <img :src="`data/${image}`" alt="" class="grande-image">
+                <img :src="`data/${image}`" alt="" width="100px">
 
                 <div v-if="!chanson">
                     <p>Aucune chanson séléctionné</p>
                 </div>
 
                 <div v-if="chanson">
-                    <p class="titre-selectionne" v-cloak>{{chanson.titre}}</p>
-                    <p class="artiste-selectionne" v-cloak>{{chanson.artiste}}</p>
+                    <p>{{chanson.titre}}</p>
+                    <p>{{chanson.artiste}}</p>
                 </div>
             </section>
 
@@ -74,45 +71,33 @@
                     </button>
                 </div>
             
-                <div class="lecteur-temps">
-                
+                <div class="lecteur-timeline">
                     <div>
-                        <p v-cloak>{{formaterTemps(tempsActuel)}}</p>
-                        <p v-cloak>{{formaterTemps(tempsRestant)}}</p>
+                        <p>{{formaterTemps(tempsActuel)}}</p>
+                        <p>{{formaterTemps(tempsRestant)}}</p>
                     </div>
-
                 </div>
                 
-                <audio 
-                    :src="`data/${audio}`" 
-                    ref="audio" 
-                    @timeupdate="miseAjour()" 
-                    @play="jouer()" 
-                    @ended="arreter()">
-                </audio>
+                <audio :src="`data/${audio}`" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
             </section>
 
             <!-- Liste des chansons -->
             <section class="liste-chansons" v-for="chanson in chansons">
-                <!-- Une chanson -->
                 <article class="chanson">
                     <a href="" @click.prevent="selectionnerChanson(chanson)">
-                        <img :src="`data/${chanson.image}`" alt="" class="petite-image">
+                        <img :src="`data/${chanson.image}`" alt="" width="50px">
 
                         <div class="informations-chanson">
                             <div>
-                                <p class="titre">{{chanson.titre}}</p>
-                                <p class="artiste">{{chanson.artiste}}</p>
+                                <p>{{chanson.titre}}</p>
+                                <p>{{chanson.artiste}}</p>
                             </div>
-                            
-                            <p class="temps">{{formaterTemps(chanson.temps)}}</p>
+                            <p>{{formaterTemps(chanson.temps)}}</p>
                         </div>
                     </a>
                 </article>
             </section>
-
         </section>
-
 
     </div>
     <script type="module" src="js/app.js"></script>
