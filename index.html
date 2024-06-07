@@ -32,7 +32,7 @@
 
                 <!-- Serach bar -->
                 <section class="search-bar">
-                    <input type="text" placeholder="Chercher un titre/artiste">
+                    <input type="text" v-model="search" placeholder="Chercher un titre/artiste">
                     <span class="material-icons">
                         search
                     </span>
@@ -41,17 +41,17 @@
 
             <!-- Highlight -->
             <section class="highlight">
-                <h1 v-if="chanson">Joue maintenant</h1>
+                <h1 v-if="isPlaying">Joue maintenant</h1>
 
-                <img :src="`data/${image}`" alt="" width="100px">
+                <img :src="`data/${img}`" alt="" width="100px">
 
-                <div v-if="!chanson">
+                <div v-if="!isPlaying">
                     <p>Aucune chanson séléctionné</p>
                 </div>
 
-                <div v-if="chanson">
-                    <p>{{chanson.titre}}</p>
-                    <p>{{chanson.artiste}}</p>
+                <div v-if="isPlaying">
+                    <p>{{song.titre}}</p>
+                    <p>{{song.artiste}}</p>
                 </div>
             </section>
 
@@ -59,13 +59,13 @@
             <section class="player">
                 <p>{{formaterTemps(tempsActuel)}}</p>
 
-                <button v-if="!joue" @click.prevent="jouer()">
+                <button v-if="!isPlaying" @click.prevent="jouer()">
                     <span class="material-icons">
                         play_arrow
                     </span>
                 </button>
 
-                <button v-if="joue" @click.prevent="arreter()">
+                <button v-if="isPlaying" @click.prevent="arreter()">
                     <span class="material-icons">
                         pause
                     </span>
@@ -78,17 +78,17 @@
 
             <!-- Playlist -->
             <section class="playlist">
-                <article class="piece" v-for="chanson in chansons">
-                    <a href="" @click.prevent="selectionnerChanson(chanson)">
-                        <img :src="`data/${chanson.image}`" alt="" width="50px">
+                <article class="piece" v-for="song in filteredSongs" :key="song.titre">
+                    <a href="" @click.prevent="selectionnerChanson(song)">
+                        <img :src="`data/${song.image}`" alt="" width="50px">
 
                         <section class="piece-informations">
                             <div>
-                                <p>{{chanson.titre}}</p>
-                                <p>{{chanson.artiste}}</p>
+                                <p>{{song.titre}}</p>
+                                <p>{{song.artiste}}</p>
                             </div>
-                            
-                            <p>{{formaterTemps(chanson.temps)}}</p>
+
+                            <p>{{formaterTemps(song.temps)}}</p>
                         </section>
                     </a>
                 </article>

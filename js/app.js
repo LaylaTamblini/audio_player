@@ -5,14 +5,22 @@ createApp({
         return {
             // À CHANGER POUR 'accueil'
             activePage: "audioplayer",
-            chansons: [],
-            chanson: null,
+            songs: [],
+            song: null,
             tempsActuel: 0,
             tempsRestant: 0,
-            joue: false,
-            image: "placeholder.jpg",
+            isPlaying: false,
+            img: "placeholder.jpg",
             audio: "empty.mp3",
             volume: 0.5,
+            search: "",
+        }
+    },
+    computed: {
+        filteredSongs() {
+            return this.songs.filter(song => {
+                return song.titre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+            })
         }
     },
     methods: {
@@ -27,9 +35,9 @@ createApp({
         },
         selectionnerChanson(chanson) {
             // this.$refs.audio.pause()
-            this.chanson = chanson
-            this.image = this.chanson.image
-            this.audio = this.chanson.audio
+            this.song = chanson
+            this.image = this.song.image
+            this.audio = this.song.audio
 
             this.$nextTick(() => {
                 this.$refs.audio.load()
@@ -38,16 +46,16 @@ createApp({
         },
         jouer() {
             this.$refs.audio.play()
-            this.joue = true
+            this.isPlaying = true
         },
         arreter() {
             this.$refs.audio.pause()
-            this.joue = false
+            this.isPlaying = false
             this.tempsRestant = 0
         },
         miseAjour() {
             this.tempsActuel = this.$refs.audio.currentTime
-            this.tempsRestant = this.chanson.temps - this.tempsActuel
+            this.tempsRestant = this.song.temps - this.tempsActuel
         },
     },
     mounted() {
@@ -55,8 +63,8 @@ createApp({
          * Récupération de la liste des chansons
          */
         fetch("data/chansons.json").then(response => {
-            response.json().then(listeChansons => {
-                this.chansons = listeChansons
+            response.json().then(playlist => {
+                this.songs = playlist
             })
         })
 
