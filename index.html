@@ -41,15 +41,12 @@
 
             <!-- Highlight -->
             <section class="highlight">
-                <h1 v-if="isPlaying">Joue maintenant</h1>
+                <h1>{{h1}}</h1>
 
-                <img :src="`data/${img}`" alt="" width="100px">
+                <img src="data/placeholder.jpg" v-if="song==''" alt="" width="100px">
+                <img :src="`data/${song.image}`" v-if="song" alt="" width="100px">
 
-                <div v-if="!isPlaying">
-                    <p>Aucune chanson séléctionné</p>
-                </div>
-
-                <div v-if="isPlaying">
+                <div v-if="song">
                     <p>{{song.titre}}</p>
                     <p>{{song.artiste}}</p>
                 </div>
@@ -72,14 +69,19 @@
                 </button>
 
                 <p>{{formaterTemps(tempsRestant)}}</p>
+
+                <section class="volume">
+                    <input type="range" name="volume" id="volume" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume()">
+                    <p>{{volume}}</p>
+                </section>
                 
-                <audio :src="`data/${audio}`" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
+                <audio :src="audioPath" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
             </section>
 
             <!-- Playlist -->
             <section class="playlist">
-                <article class="piece" v-for="song in filteredSongs" :key="song.titre">
-                    <a href="" @click.prevent="selectionnerChanson(song)">
+                <article class="piece" v-for="song in filteredSongs" :key="song.titre || song.artiste">
+                    <a href="" @click.prevent="selectedSong(song)">
                         <img :src="`data/${song.image}`" alt="" width="50px">
 
                         <section class="piece-informations">

@@ -6,20 +6,23 @@ createApp({
             // À CHANGER POUR 'accueil'
             activePage: "audioplayer",
             songs: [],
-            song: null,
+            song: "",
             tempsActuel: 0,
             tempsRestant: 0,
             isPlaying: false,
-            img: "placeholder.jpg",
-            audio: "empty.mp3",
             volume: 0.5,
             search: "",
+            h1: "Aucune chanson selectionnée",
+            audioPath: "",
         }
     },
     computed: {
         filteredSongs() {
             return this.songs.filter(song => {
-                return song.titre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+                const matchTitre = song.titre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+                const matchArtiste = song.artiste.toLowerCase().indexOf(this.search.toLowerCase()) != -1
+
+                return matchTitre || matchArtiste
             })
         }
     },
@@ -33,30 +36,42 @@ createApp({
 
             return `${minutes}:${secondes}`   
         },
-        selectionnerChanson(chanson) {
-            // this.$refs.audio.pause()
-            this.song = chanson
-            this.image = this.song.image
-            this.audio = this.song.audio
-
+        selectedSong(song) {
+            this.song = song
+            let url = this.song.audio
+            this.audioPath = "`data/${url}`"
+            
             this.$nextTick(() => {
                 this.$refs.audio.load()
                 this.$refs.audio.play()
             })
         },
         jouer() {
-            this.$refs.audio.play()
-            this.isPlaying = true
+            if(this.song == "") {
+                this.$refs.audio.pause()
+            } else {
+                this.h1 = "Joue maintenant"
+                this.$refs.audio.play()
+                this.isPlaying = true
+            }
         },
         arreter() {
+            this.h1 = "En pause"
             this.$refs.audio.pause()
             this.isPlaying = false
-            this.tempsRestant = 0
         },
         miseAjour() {
             this.tempsActuel = this.$refs.audio.currentTime
             this.tempsRestant = this.song.temps - this.tempsActuel
+
+            if(this.tempsRestant <= 0) {
+                this.tempsRestant = 0
+            }
         },
+        changeVolume() {
+            this.$refs.audio.volume = this.volume
+            console.log("volume changé")
+        }
     },
     mounted() {
         /**
