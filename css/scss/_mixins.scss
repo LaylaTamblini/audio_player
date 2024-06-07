@@ -1,0 +1,16 @@
+/**
+ * Permet de définir les propriétés flexbox d'un élément.
+ */
+ @mixin setFlex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+/**
+ * Permet d'ajouter une bordure rouge sur un élément.
+ */
+@mixin debug() {
+    border: 1px solid red;
+}

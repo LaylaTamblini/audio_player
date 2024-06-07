@@ -4,7 +4,7 @@ createApp({
     data() {
         return {
             // À CHANGER POUR 'accueil'
-            pageActive: "audio-player",
+            activePage: "audioplayer",
             chansons: [],
             chanson: null,
             tempsActuel: 0,
@@ -16,8 +16,8 @@ createApp({
         }
     },
     methods: {
-        changerPage(page) {
-            this.pageActive = page
+        switchPage(page) {
+            this.activePage = page
         },
         formaterTemps(temps) {
             let minutes = (Math.floor(temps / 60) + "").padStart(2, "0")

@@ -1,0 +1,51 @@
+@import "scss/reset";
+@import "scss/mixins";
+@import "scss/base";
+
+.audioplayer {
+    & header {
+        @include setFlex(row, space-between, center);
+        padding: 0.5rem;
+
+        .search-bar {
+            @include setFlex(row, center, center);
+        }
+    }
+
+    .highlight {
+        @include setFlex(column, center, center);
+        padding: 0.5rem;
+        background-color: rgb(214, 214, 214);
+    }
+
+    .player {
+        @include setFlex(row, space-between,center);
+        padding: 0.5rem;
+        background-color: rgb(136, 136, 136);
+    }
+    
+    .playlist {
+        @include setFlex(column, center, center);
+
+        .piece {
+            width: 100%;
+
+            &:not(:last-of-type) {
+                margin-bottom: 0.5rem;
+            }
+
+            a {
+                @include setFlex(row, flex-start, center);
+                width: 100%;
+                padding: 0.5rem;
+                background-color: rgb(144, 208, 228);
+
+                & .piece-informations {
+                    @include setFlex(row, space-between, center);
+                    width: 100%;
+                    margin-left: 2rem;
+                }
+            }
+        }
+    }
+}
