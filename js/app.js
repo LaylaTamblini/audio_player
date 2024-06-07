@@ -39,7 +39,7 @@ createApp({
         selectedSong(song) {
             this.song = song
             let url = this.song.audio
-            this.audioPath = "`data/${url}`"
+            this.audioPath = `data/${url}`
             
             this.$nextTick(() => {
                 this.$refs.audio.load()
@@ -50,15 +50,15 @@ createApp({
             if(this.song == "") {
                 this.$refs.audio.pause()
             } else {
+                this.isPlaying = true
                 this.h1 = "Joue maintenant"
                 this.$refs.audio.play()
-                this.isPlaying = true
             }
         },
         arreter() {
+            this.isPlaying = false
             this.h1 = "En pause"
             this.$refs.audio.pause()
-            this.isPlaying = false
         },
         miseAjour() {
             this.tempsActuel = this.$refs.audio.currentTime
