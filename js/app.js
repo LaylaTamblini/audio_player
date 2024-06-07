@@ -11,7 +11,8 @@ createApp({
             tempsRestant: 0,
             joue: false,
             image: "placeholder.jpg",
-            audio: "empty.mp3"
+            audio: "empty.mp3",
+            volume: 0.5,
         }
     },
     methods: {
@@ -25,10 +26,15 @@ createApp({
             return `${minutes}:${secondes}`   
         },
         selectionnerChanson(chanson) {
-            this.arreter()
+            // this.$refs.audio.pause()
             this.chanson = chanson
             this.image = this.chanson.image
             this.audio = this.chanson.audio
+
+            this.$nextTick(() => {
+                this.$refs.audio.load()
+                this.$refs.audio.play()
+            })
         },
         jouer() {
             this.$refs.audio.play()
@@ -37,11 +43,12 @@ createApp({
         arreter() {
             this.$refs.audio.pause()
             this.joue = false
+            this.tempsRestant = 0
         },
         miseAjour() {
             this.tempsActuel = this.$refs.audio.currentTime
             this.tempsRestant = this.chanson.temps - this.tempsActuel
-        }
+        },
     },
     mounted() {
         /**
@@ -52,5 +59,7 @@ createApp({
                 this.chansons = listeChansons
             })
         })
+
+        this.$refs.audio.volume = this.volume
     }
 }).mount('#app')

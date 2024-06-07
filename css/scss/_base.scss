@@ -26,7 +26,6 @@ html {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-bottom: 2rem;
         padding: 1rem;
 
         .recherche {
@@ -37,18 +36,28 @@ html {
 
     .chanson-selectionnee {
         display: flex;
-        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
         width: 100%;
         padding: 1rem;
         
         & div {
-            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 1rem;
+
+            .titre-selectionne {
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
         }
     }
 
     .lecteur {
         width: 100%;
-        height: 110px;
+        height: 100px;
         padding: 1rem;
         background-color: rgb(53, 53, 53);
         color: white;
@@ -133,7 +142,7 @@ html {
             }
         }
         
-        .chanson:not(last-child) {
+        .chanson:not(:last-of-type) {
             margin-bottom: 0.5rem;
         }
     }
@@ -142,11 +151,12 @@ html {
 .petite-image {
     width: 50px;
     height: 50px;
-    border-radius: 0.5rem;
+    border-radius: 100%;
 }
 
 .grande-image {
-    border-radius: 0.5rem;
+    width: 70%;
+    border-radius: 100%;
 }
 
 button {
