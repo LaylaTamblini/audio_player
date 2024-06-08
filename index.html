@@ -6,6 +6,9 @@
     <title>Audio Player</title>
     <link rel="shortcut icon" href="#">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -32,7 +35,7 @@
 
                 <!-- Serach bar -->
                 <section class="search-bar">
-                    <input type="text" v-model="search" placeholder="Chercher un titre/artiste">
+                    <input type="text" v-model="search" placeholder="Chercher un titre/artiste" autofocus>
                     <span class="material-icons">
                         search
                     </span>
@@ -43,8 +46,8 @@
             <section class="highlight">
                 <h1>{{h1}}</h1>
 
-                <img src="data/placeholder.jpg" v-if="song==''" alt="" width="100px">
-                <img :src="`data/${song.image}`" v-if="song" alt="" width="100px">
+                <img src="data/placeholder.jpg" v-if="song==''" alt="">
+                <img :src="`data/${song.image}`" v-if="song" alt="">
 
                 <div v-if="song">
                     <p>{{song.titre}}</p>

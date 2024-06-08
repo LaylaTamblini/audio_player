@@ -1,21 +1,19 @@
 @import "scss/reset";
 @import "scss/mixins";
+@import "scss/variables";
 @import "scss/base";
+@import "scss/highlight";
+@import "scss/search-bar";
+
 
 .audioplayer {
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    padding: 1rem;
+
     & header {
         @include setFlex(row, space-between, center);
         padding: 0.5rem;
-
-        .search-bar {
-            @include setFlex(row, center, center);
-        }
-    }
-
-    .highlight {
-        @include setFlex(column, center, center);
-        padding: 0.5rem;
-        background-color: rgb(214, 214, 214);
     }
 
     .player {

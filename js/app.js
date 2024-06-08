@@ -12,7 +12,7 @@ createApp({
             isPlaying: false,
             volume: 0.5,
             search: "",
-            h1: "Aucune chanson selectionnée",
+            h1: "Aucune chanson sélectionnée",
             audioPath: "",
         }
     },
