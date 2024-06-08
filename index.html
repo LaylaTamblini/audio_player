@@ -13,14 +13,16 @@
 </head>
 <body>
     <div id="app">
-
         <!-- Home -->
         <section class="home" v-if="activePage=='home'">
-            <h1>Accueil</h1>
-
-            <button @click.prevent="switchPage('audioplayer')">
-                Audio Player
-            </button>
+            <h1>
+                <button @click.prevent="switchPage('audioplayer')">
+                    Plonge
+                </button>
+                dans la tranquillité <span>musicale</span> 😎
+            </h1>
+            
+            <img src="data/home.webp" alt="">
         </section>
         
         <!-- Audio player -->
@@ -58,21 +60,21 @@
                     <!-- Player -->
                     <section class="player">
                         <section class="player-time">
-                            <p>{{formaterTemps(tempsActuel)}}</p>
+                            <p>{{formatTime(currentTime)}}</p>
             
-                            <button v-if="!isPlaying" @click.prevent="jouer()">
+                            <button v-if="!isPlaying" @click.prevent="play()">
                                 <span class="material-icons">
                                     play_arrow
                                 </span>
                             </button>
             
-                            <button v-if="isPlaying" @click.prevent="arreter()">
+                            <button v-if="isPlaying" @click.prevent="stop()">
                                 <span class="material-icons">
                                     pause
                                 </span>
                             </button>
             
-                            <p>{{formaterTemps(tempsRestant)}}</p>
+                            <p>{{formatTime(remainingTime)}}</p>
                         </section>
         
                         <section class="player-volume">
@@ -83,7 +85,7 @@
                             </span>
                         </section>
                         
-                        <audio :src="audioPath" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
+                        <audio :src="audioPath" ref="audio" @timeupdate="update()" @play="play()" @ended="stop()"></audio>
                     </section>
                 </section>
     
@@ -100,7 +102,7 @@
                                         <p class="piece-artiste">{{song.artiste}}</p>
                                     </div>
         
-                                    <p>{{formaterTemps(song.temps)}}</p>
+                                    <p>{{formatTime(song.temps)}}</p>
                                 </section>
                             </a>
                         </article>

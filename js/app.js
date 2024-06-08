@@ -4,11 +4,11 @@ createApp({
     data() {
         return {
             // À CHANGER POUR 'accueil'
-            activePage: "audioplayer",
+            activePage: "home",
             songs: [],
             song: "",
-            tempsActuel: 0,
-            tempsRestant: 0,
+            currentTime: 0,
+            remainingTime: 0,
             isPlaying: false,
             volume: 0.5,
             search: "",
@@ -18,6 +18,11 @@ createApp({
         }
     },
     computed: {
+        /**
+         * Filtre les chansons en fonction de la recherche par titre ou artiste.
+         * 
+         * @returns array 
+         */
         filteredSongs() {
             return this.songs.filter(song => {
                 const matchTitre = song.titre.toLowerCase().indexOf(this.search.toLowerCase()) != -1
@@ -28,15 +33,36 @@ createApp({
         }
     },
     methods: {
+        /**
+         * Change la page active de l'application et arrête la lecture audio au besoin.
+         * 
+         * @param string page 
+         */
         switchPage(page) {
-            this.activePage = page
+            if(this.isPlaying) {
+                this.stop()
+                this.activePage = page
+            } else {
+                this.activePage = page
+            }
         },
-        formaterTemps(temps) {
-            let minutes = (Math.floor(temps / 60) + "").padStart(2, "0")
-            let secondes = (Math.floor(temps - minutes * 60) + "").padStart(2,"0")
+        /**
+         * Formate un temps en secondes en chaîne de caractères.
+         * 
+         * @param number temps 
+         * @returns string
+         */
+        formatTime(time) {
+            let minutes = (Math.floor(time / 60) + "").padStart(2, "0")
+            let secondes = (Math.floor(time - minutes * 60) + "").padStart(2,"0")
 
             return `${minutes}:${secondes}`   
         },
+        /**
+         * Sélectionne une chanson, met à jour le chemin et démarre la lecture.
+         * 
+         * @param Object song 
+         */
         selectedSong(song) {
             this.song = song
             let url = this.song.audio
@@ -47,7 +73,10 @@ createApp({
                 this.$refs.audio.play()
             })
         },
-        jouer() {
+        /**
+         * Démarre la lecture de la chanson et met à jour l'état de lecture.
+         */
+        play() {
             if(this.song == "") {
                 this.$refs.audio.pause()
             } else {
@@ -56,19 +85,30 @@ createApp({
                 this.$refs.audio.play()
             }
         },
-        arreter() {
+        /**
+         * Arrête la lecture de la chanson et met à jour l'état de lecture.
+         */
+        stop() {
             this.isPlaying = false
             this.h1 = "En pause 😴"
             this.$refs.audio.pause()
         },
-        miseAjour() {
-            this.tempsActuel = this.$refs.audio.currentTime
-            this.tempsRestant = this.song.temps - this.tempsActuel
-
-            if(this.tempsRestant <= 0) {
-                this.tempsRestant = 0
+        /**
+         * Met à jour le temps actuel et le temps restant de la chanson.
+         */
+        update() {
+            if (this.$refs.audio) {
+                this.currentTime = this.$refs.audio.currentTime;
+                this.remainingTime = this.song.temps - this.currentTime;
+    
+                if (this.remainingTime <= 0) {
+                    this.remainingTime = 0;
+                }
             }
         },
+        /**
+         * Modifie le volume de l'audio et met à jour l'icône du volume.
+         */
         changeVolume() {
             this.$refs.audio.volume = this.volume
             if(this.volume == 0) {
@@ -82,7 +122,7 @@ createApp({
     },
     mounted() {
         /**
-         * Récupération de la liste des chansons
+         * Récupération de la liste des chansons.
          */
         fetch("data/chansons.json").then(response => {
             response.json().then(playlist => {
@@ -90,6 +130,15 @@ createApp({
             })
         })
 
-        this.$refs.audio.volume = this.volume
+        /**
+         * Cherche si l'élément audio est disponible dans le DOM.
+         */
+        this.$nextTick(() => {
+            // Vérifie si l'audio existe
+            if (this.$refs.audio) {
+                // Si oui, change la valeur de volume
+                this.$refs.audio.volume = this.volume
+            }
+        })
     }
 }).mount('#app')
