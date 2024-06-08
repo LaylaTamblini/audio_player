@@ -2,7 +2,8 @@ html {
 	box-sizing: border-box;
 	font-size: 16px;
 	line-height: 1.5;
-	font-family: "Manrope", sans-serif;
+	font-family: "Plus Jakarta Sans", sans-serif;
+	color: var(--black);
 }
 
 *,
@@ -13,8 +14,28 @@ html {
     padding: 0;
 }
 
+body {
+	@include setFlex(column, center, center);
+	background-color: var(--pastel);
+}
+
 button {
 	padding: 0;
 	border: none;
+	color: var(--black);
 	background-color: transparent;
+	cursor: pointer;
+}
+
+.back {
+    @include border();
+	font-size: 1.6rem;
+}
+
+#app {
+	width: 100%;
+
+	@media screen and (min-width: 992px) {
+		max-width: 850px;
+    }
 }

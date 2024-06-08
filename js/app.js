@@ -12,8 +12,9 @@ createApp({
             isPlaying: false,
             volume: 0.5,
             search: "",
-            h1: "Aucune chanson sélectionnée",
+            h1: "Aucune chanson sélectionnée 😴",
             audioPath: "",
+            volumeIcon: "volume_down"
         }
     },
     computed: {
@@ -51,13 +52,13 @@ createApp({
                 this.$refs.audio.pause()
             } else {
                 this.isPlaying = true
-                this.h1 = "Joue maintenant"
+                this.h1 = "Joue maintenant 😎"
                 this.$refs.audio.play()
             }
         },
         arreter() {
             this.isPlaying = false
-            this.h1 = "En pause"
+            this.h1 = "En pause 😴"
             this.$refs.audio.pause()
         },
         miseAjour() {
@@ -70,7 +71,13 @@ createApp({
         },
         changeVolume() {
             this.$refs.audio.volume = this.volume
-            console.log("volume changé")
+            if(this.volume == 0) {
+                this.volumeIcon = "volume_off"
+            } else if(this.volume > 0.5) {
+                this.volumeIcon = "volume_up"
+            } else if(this.volume < 0.5) {
+                this.volumeIcon = "volume_down"
+            }
         }
     },
     mounted() {

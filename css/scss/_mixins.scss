@@ -14,3 +14,13 @@
 @mixin debug() {
     border: 1px solid red;
 }
+
+/**
+ * Ajoute une bordure noir stylisé sur un élément.
+ */
+@mixin border() {
+    padding: 0.3rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--black);
+    box-shadow: 0px 2.5px 0px var(--black);
+}

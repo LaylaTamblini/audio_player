@@ -1,0 +1,15 @@
+.audioplayer {
+    padding: 1rem;
+    width: 100%;
+
+    & header {
+        @include setFlex(row, space-between, center);
+        margin-bottom: 1.5rem;
+    }
+    
+    @media screen and (min-width: 992px) {
+        & div {
+            @include setFlex(row, space-between, flex-start);
+        }
+    }
+}

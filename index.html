@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -28,77 +28,85 @@
             <header>
                 <!-- Back Home -->
                 <button @click.prevent="switchPage('home')">
-                    <span class="material-icons">
+                    <span class="material-icons back">
                         arrow_back
                     </span>
                 </button>
 
                 <!-- Serach bar -->
                 <section class="search-bar">
-                    <input type="text" v-model="search" placeholder="Chercher un titre/artiste" autofocus>
+                    <input type="text" v-model="search" placeholder="Chercher un titre/artiste">
                     <span class="material-icons">
                         search
                     </span>
                 </section>
             </header>
 
-            <!-- Highlight -->
-            <section class="highlight">
-                <h1>{{h1}}</h1>
-
-                <img src="data/placeholder.jpg" v-if="song==''" alt="">
-                <img :src="`data/${song.image}`" v-if="song" alt="">
-
-                <div v-if="song">
-                    <p>{{song.titre}}</p>
-                    <p>{{song.artiste}}</p>
-                </div>
-            </section>
-
-            <!-- Player -->
-            <section class="player">
-                <p>{{formaterTemps(tempsActuel)}}</p>
-
-                <button v-if="!isPlaying" @click.prevent="jouer()">
-                    <span class="material-icons">
-                        play_arrow
-                    </span>
-                </button>
-
-                <button v-if="isPlaying" @click.prevent="arreter()">
-                    <span class="material-icons">
-                        pause
-                    </span>
-                </button>
-
-                <p>{{formaterTemps(tempsRestant)}}</p>
-
-                <section class="volume">
-                    <input type="range" name="volume" id="volume" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume()">
-                    <p>{{volume}}</p>
-                </section>
-                
-                <audio :src="audioPath" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
-            </section>
-
-            <!-- Playlist -->
-            <section class="playlist">
-                <article class="piece" v-for="song in filteredSongs" :key="song.titre || song.artiste">
-                    <a href="" @click.prevent="selectedSong(song)">
-                        <img :src="`data/${song.image}`" alt="" width="50px">
-
-                        <section class="piece-informations">
-                            <div>
-                                <p>{{song.titre}}</p>
-                                <p>{{song.artiste}}</p>
-                            </div>
-
-                            <p>{{formaterTemps(song.temps)}}</p>
+            <div>                
+                <!-- Highlight -->
+                <section class="highlight">
+                    <h1>{{h1}}</h1>
+                    
+                    <img src="data/no-song.webp" v-if="song==''" alt="">
+                    <img :src="`data/${song.image}`" v-if="song" alt="" class="grayscale">
+    
+                    <section class="highlight-informations" v-if="song">
+                        <p class="highlight-titre">{{song.titre}}</p>
+                        <p class="highlight-artiste">{{song.artiste}}</p>
+                    </section>
+    
+                    <!-- Player -->
+                    <section class="player">
+                        <section class="player-time">
+                            <p>{{formaterTemps(tempsActuel)}}</p>
+            
+                            <button v-if="!isPlaying" @click.prevent="jouer()">
+                                <span class="material-icons">
+                                    play_arrow
+                                </span>
+                            </button>
+            
+                            <button v-if="isPlaying" @click.prevent="arreter()">
+                                <span class="material-icons">
+                                    pause
+                                </span>
+                            </button>
+            
+                            <p>{{formaterTemps(tempsRestant)}}</p>
                         </section>
-                    </a>
-                </article>
-            </section>
-        </section>
+        
+                        <section class="player-volume">
+                            <input type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume()">
+                            
+                            <span class="material-icons">
+                                {{volumeIcon}}
+                            </span>
+                        </section>
+                        
+                        <audio :src="audioPath" ref="audio" @timeupdate="miseAjour()" @play="jouer()" @ended="arreter()"></audio>
+                    </section>
+                </section>
+    
+    
+                    <!-- Playlist -->
+                    <section class="playlist">
+                        <article class="piece" v-for="song in filteredSongs" :key="song.titre || song.artiste">
+                            <a href="" @click.prevent="selectedSong(song)">
+                                <img :src="`data/${song.image}`" alt="" class="grayscale-100">
+        
+                                <section class="piece-informations">
+                                    <div>
+                                        <p class="piece-titre">{{song.titre}}</p>
+                                        <p class="piece-artiste">{{song.artiste}}</p>
+                                    </div>
+        
+                                    <p>{{formaterTemps(song.temps)}}</p>
+                                </section>
+                            </a>
+                        </article>
+                    </section>
+                </section>
+            </div>
 
     </div>
     <script type="module" src="js/app.js"></script>

@@ -1,17 +1,25 @@
 .search-bar {
-    @include setFlex(row, center, center);
-    background-color: var(--white-transparence);
-    padding: 0.3rem;
-    border-radius: 0.5rem;
+    @include setFlex(row, flex-start, center);
+    @include border();
     
     & input {
-        border: none;
+        margin-right: 0.5rem;
         padding: 0.3rem;
-        background-color: transparent;
+        border: none;
         outline: none;
+        background-color: transparent;
+        color: var(--black-transparence);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 500;
+
+        &::placeholder {
+            color: var(--black-transparence);
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-weight: 500;
+        }
     }
 
     & span {
-        color: var(--black);
+        color: var(--blue);
     }
 }

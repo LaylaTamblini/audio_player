@@ -2,49 +2,8 @@
 @import "scss/mixins";
 @import "scss/variables";
 @import "scss/base";
+@import "scss/audioplayer";
 @import "scss/highlight";
 @import "scss/search-bar";
-
-
-.audioplayer {
-    background-color: #8BC6EC;
-    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-    padding: 1rem;
-
-    & header {
-        @include setFlex(row, space-between, center);
-        padding: 0.5rem;
-    }
-
-    .player {
-        @include setFlex(row, space-between,center);
-        padding: 0.5rem;
-        background-color: rgb(136, 136, 136);
-    }
-    
-    .playlist {
-        @include setFlex(column, center, center);
-        padding: 0.5rem;
-
-        .piece {
-            width: 100%;
-
-            &:not(:last-of-type) {
-                margin-bottom: 0.5rem;
-            }
-
-            a {
-                @include setFlex(row, flex-start, center);
-                width: 100%;
-                padding: 0.5rem;
-                background-color: rgb(144, 208, 228);
-
-                & .piece-informations {
-                    @include setFlex(row, space-between, center);
-                    width: 100%;
-                    margin-left: 2rem;
-                }
-            }
-        }
-    }
-}
+@import "scss/player";
+@import "scss/playlist";
