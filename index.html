@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="app">
+
         <!-- Home -->
         <section class="home" v-if="activePage=='home'">
             <h1>
@@ -21,7 +22,7 @@
                 </button>
                 dans la tranquillité <span>musicale</span> 😎
             </h1>
-            
+
             <img src="data/home.webp" alt="">
         </section>
         
@@ -76,7 +77,7 @@
             
                             <p>{{formatTime(remainingTime)}}</p>
                         </section>
-        
+
                         <section class="player-volume">
                             <input type="range" v-model="volume" min="0" max="1" step="0.01" @input="changeVolume()">
                             
@@ -89,26 +90,25 @@
                     </section>
                 </section>
     
-    
-                    <!-- Playlist -->
-                    <section class="playlist">
-                        <article class="piece" v-for="song in filteredSongs" :key="song.titre || song.artiste">
-                            <a href="" @click.prevent="selectedSong(song)">
-                                <img :src="`data/${song.image}`" alt="" class="grayscale-100">
+                <!-- Playlist -->
+                <section class="playlist">
+                    <article class="piece" v-for="song in filteredSongs" :key="song.titre || song.artiste">
+                        <a href="" @click.prevent="selectedSong(song)">
+                            <img :src="`data/${song.image}`" alt="" class="grayscale-100">
         
-                                <section class="piece-informations">
-                                    <div>
-                                        <p class="piece-titre">{{song.titre}}</p>
-                                        <p class="piece-artiste">{{song.artiste}}</p>
-                                    </div>
+                            <section class="piece-informations">
+                                <div>
+                                    <p class="piece-titre">{{song.titre}}</p>
+                                    <p class="piece-artiste">{{song.artiste}}</p>
+                                </div>
         
-                                    <p>{{formatTime(song.temps)}}</p>
-                                </section>
-                            </a>
-                        </article>
-                    </section>
+                                <p>{{formatTime(song.temps)}}</p>
+                            </section>
+                        </a>
+                    </article>
                 </section>
             </div>
+        </section>
 
     </div>
     <script type="module" src="js/app.js"></script>
