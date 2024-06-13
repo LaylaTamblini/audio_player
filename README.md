@@ -24,6 +24,6 @@ Les couleurs et les images sont choisies dans un style animé japonais afin de c
 
 Autres
 ------
-Utilisation de Vue.js
-CSS/SASS réalisé par moi
-Images prises sur https://giphy.com/
+1. Utilisation de Vue.js
+2. CSS/SASS réalisé par moi
+3. Images prises sur https://giphy.com/
